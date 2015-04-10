@@ -10,14 +10,16 @@ client.connect(31416, '127.0.0.1', function() {
 
 // listen signal strength changes
 // and client.write( <new signal strength> );
-fs.watch('/proc/net/wireless', function (event) {
-	console.log('event is: ');
-	console.dir(event);
-	procfs.wifi(function (stats) {
-		console.log(stats);
-		//client.write(stats[1].level);
+var timer = setInterval(function () {
+	procfs.wifi(function (err, stats, buffer) {
+		console.log("%s   %s", 
+			stats[0].link.Quality,
+			stats[0].level.Quality);
+	
+		client.write(stats[0].link.Quality + 
+			stats[0].level.Quality);
 	});
-});
+}, 2000);
 
 
 client.on('data', function(data) {
