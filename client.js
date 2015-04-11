@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var net = require('net')
 , fs = require('fs')
 //3rd party library to return signal strength
@@ -20,7 +22,6 @@ var timer = setInterval(function () {
 			+ stats[0].level.Quality);
 	});
 }, 2000);
-
 
 client.on('data', function(data) {
 	console.log('Received: ' + data);
