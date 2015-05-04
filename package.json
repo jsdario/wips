@@ -1,0 +1,30 @@
+{
+  "name": "wips",
+  "version": "0.0.1",
+  "description": "WiFi Indoor Positioning System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jesusdario/wips.git"
+  },
+  "keywords": [
+    "WiFi",
+    "xway",
+    "netbeast",
+    "positioning",
+    "system"
+  ],
+  "author": "staff@netbeast.co",
+  "license": "GPLV2",
+  "bugs": {
+    "url": "https://github.com/jesusdario/wips/issues"
+  },
+  "homepage": "https://github.com/jesusdario/wips",
+  "dependencies": {
+    "wireless": "^0.3.2"
+  }
+}
