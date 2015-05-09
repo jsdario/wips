@@ -3,7 +3,7 @@
 var net = require('net')
 , fs = require('fs')
 //3rd party library to return signal strength
-, program = require('commander');
+, program = require('commander')
 , procfs = require('procfs-stats');
 
 program
