@@ -11,8 +11,10 @@ program
 .option('-b, --ip <n>', 'Bind to base station IP')
 .parse(process.argv);
 
+var ip = program.ip || '127.0.0.1';
+
 var client = new net.Socket();
-client.connect(31416, '127.0.0.1', function() {
+client.connect(31416, ip, function() {
 	console.log('Connected');
 });
 
