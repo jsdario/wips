@@ -3,7 +3,13 @@
 var net = require('net')
 , fs = require('fs')
 //3rd party library to return signal strength
+, program = require('commander');
 , procfs = require('procfs-stats');
+
+program
+.version('0.0.1')
+.option('-b, --ip <n>', 'Bind to base station IP')
+.parse(process.argv);
 
 var client = new net.Socket();
 client.connect(31416, '127.0.0.1', function() {
@@ -17,7 +23,7 @@ var timer = setInterval(function () {
 		console.log("%s %s", 
 			stats[0].link.Quality,
 			stats[0].level.Quality);
-	
+
 		client.write(stats[0].link.Quality 
 			+ stats[0].level.Quality);
 	});
@@ -29,4 +35,8 @@ client.on('data', function(data) {
 
 client.on('close', function() {
 	console.log('Connection closed');
+});
+
+client.on('end', function() {
+  console.log('disconnected from server');
 });
