@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/jesusdario/wips",
   "dependencies": {
-    "procfs-stats": "git://github.com/soldair/node-procfs-stats.git"
+    "express": "^4.12.3",
+    "procfs-stats": "git://github.com/soldair/node-procfs-stats.git",
+    "socket.io": "^1.3.5"
   }
 }

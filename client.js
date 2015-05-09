@@ -29,7 +29,7 @@ var timer = setInterval(function () {
 		client.write(stats[0].link.Quality 
 			+ stats[0].level.Quality);
 	});
-}, 2000);
+}, 400);
 
 client.on('data', function(data) {
 	console.log('Received: ' + data);
