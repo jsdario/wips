@@ -39,6 +39,18 @@ client.on('end', function() {
 });
 
 
+
+// Signal strength modeling 
+//==========================
+// RSSI means Receive Signal Strength Indicator
+const MAX_RSSI = -35; //dBm
+const MIN_RSSI = -95; //dBm
+const RANGE = MAX_RSSI - MIN_RSSI;
+// Received signal strength at 1 metre
+const A = -35; //dBm
+//path loss exponent at lossless env. is 2
+const n = 2.7;
+
 function distFromSignal(level) {
     var rssi = (level * RANGE / 100) + MIN_RSSI;
     // rssi = -10 * n * Math.log(d) + A;
