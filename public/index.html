@@ -17,6 +17,16 @@
 		margin: 0;
 		padding: 0;
 	}
+
+	.wrapper {
+		-moz-transform: scaleY(-1);
+		-o-transform: scaleY(-1);
+		-webkit-transform: scaleY(-1);
+		transform: scaleY(-1);
+		filter: FlipV;
+		-ms-filter: "FlipV";
+	}
+
 	.wrapper {
 		width: 100%;
 		height: 100%;
@@ -36,12 +46,10 @@
 		xmlns="http://www.w3.org/2000/svg" 
 		xmlns:xlink="http://www.w3.org/1999/xlink">
 		<circle id="cell" cx="0" cy="0" r="10"></circle>
-		<circle cx="0" cy="0" r="10"
-		style="fill:steelblue;"></circle>
-		<circle cx="450" cy="0" r="10"
-		style="fill:steelblue;"></circle>
-		<circle cx="100" cy="500" r="10"
-		style="fill:steelblue;"></circle>
+		<circle id="a" cx="0" cy="0" r="10" style="fill:steelblue;"></circle>
+		<circle id="b" cx="0" cy="0" r="10" style="fill:steelblue;"></circle>
+		<circle id="c" cx="0" cy="0" r="10" style="fill:steelblue;"></circle>
+		<circle id="d" cx="0" cy="0" r="10" style="fill:steelblue;"></circle>
 	</div>
 </svg>
 

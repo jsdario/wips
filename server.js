@@ -9,6 +9,8 @@ var net = require('net')
 //=======================
 program.version('1.0.0')
 .option('-d, --debug', 'Enable debug logs')
+.option('-t, --tcp <n>', 'port for the TCP server', 31416, parseInt)
+.option('-p, --http <n>', 'port for the HTTP server', 8000, parseInt)
 .parse(process.argv);
 
 if(program.debug) {
@@ -32,13 +34,13 @@ var server = net.createServer(function (socket) {
 	});
 });
 
-server.listen(31416, function () {
+server.listen(program.tcp, function () {
 	log.info('Base Station listening at http://%s:%s',
 		server.address().address,
 		server.address().port);
 });
 
-plotter.web.listen(3000, function () {
+plotter.web.listen(program.http, function () {
 	log.info('Plotter listening at http://%s:%s',
 		plotter.web.address().address,
 		plotter.web.address().port);

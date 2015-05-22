@@ -22,14 +22,9 @@ client.connect(31416, ip, function() {
 // and client.write( <new signal strength> );
 var timer = setInterval(function () {
 	procfs.wifi(function (err, stats, buffer) {
-		console.log("%s %s", 
-			stats[0].link.Quality,
-			stats[0].level.Quality);
-
-		client.write(stats[0].link.Quality 
-			+ stats[0].level.Quality);
+		client.write(distFromSignal(stats[0].level.Quality));
 	});
-}, 400);
+}, 1000);
 
 client.on('data', function(data) {
 	console.log('Received: ' + data);
@@ -42,3 +37,13 @@ client.on('close', function() {
 client.on('end', function() {
   console.log('disconnected from server');
 });
+
+
+function distFromSignal(level) {
+    var rssi = (level * RANGE / 100) + MIN_RSSI;
+    // rssi = -10 * n * Math.log(d) + A;
+    var aux = (rssi - A) / (-10 * n);
+    var dist = Math.pow(10, aux);
+    console.log("rssi=%s, d=%s", rssi, dist);
+    return dist;
+}
