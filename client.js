@@ -57,5 +57,5 @@ function distFromSignal(level) {
     var aux = (rssi - A) / (-10 * n);
     var dist = Math.pow(10, aux);
     console.log("rssi=%s, d=%s", rssi, dist);
-    return dist;
+    return dist.toString();
 }
