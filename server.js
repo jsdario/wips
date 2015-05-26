@@ -25,11 +25,9 @@ var dists = [];
 var server = net.createServer(function (socket) {
 	socket.write('Welcome. Sincerly, your server.\r\n');
 	socket.on('data', function(data) {
-		var aux = data.toString().split('.');
 		log.debug('=============================');
-		log.debug('# %s from tcp://%s', data,
-			socket.remoteAddress);
-		var pkt = [socket.remoteAddress, aux[0], aux[1]];
+		log.debug('[tcp://%s] d=%s', socket.remoteAddress, data);
+		var pkt = [socket.remoteAddress, data];
 		plotter.io.emit('data', pkt.join(','));
 	});
 });

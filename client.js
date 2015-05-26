@@ -21,9 +21,13 @@ client.connect(31416, ip, function() {
 // listen signal strength changes
 // and client.write( <new signal strength> );
 var timer = setInterval(function () {
-	procfs.wifi(function (err, stats, buffer) {
-		client.write(distFromSignal(stats[0].level.Quality));
-	});
+    procfs.wifi(function (err, stats, buffer) {
+        var lvl = stats[0].level.Quality;
+        var rss = rssiFromLevel(lvl);
+        var pkg = [distFromSignal(lvl), rss].join(',');
+        console.log(pkg);
+        client.write(pkg);
+    });
 }, 1000);
 
 client.on('data', function(data) {
@@ -37,7 +41,6 @@ client.on('close', function() {
 client.on('end', function() {
   console.log('disconnected from server');
 });
-
 
 
 // Signal strength modeling 
@@ -56,6 +59,10 @@ function distFromSignal(level) {
     // rssi = -10 * n * Math.log(d) + A;
     var aux = (rssi - A) / (-10 * n);
     var dist = Math.pow(10, aux);
-    console.log("rssi=%s, d=%s", rssi, dist);
     return dist.toString();
+}
+
+function rssiFromLevel(level) {
+    var rssi = (level * RANGE / 100) + MIN_RSSI;
+    return rssi;
 }
