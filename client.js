@@ -25,7 +25,6 @@ var timer = setInterval(function () {
         var lvl = stats[0].level.Quality;
         var rss = rssiFromLevel(lvl);
         var pkg = [distFromSignal(lvl), rss].join(',');
-        console.log(pkg);
         client.write(pkg);
     });
 }, 1000);
